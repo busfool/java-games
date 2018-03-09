@@ -49,4 +49,6 @@ public abstract class FlyingObject {
     public void setImage(BufferedImage image) {
         this.image = image;
     }
+
+    abstract void step();
 }
