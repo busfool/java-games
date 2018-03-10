@@ -10,7 +10,12 @@ public class Bullet extends FlyingObject {
     }
 
     @Override
-    void step() {
+    public void step() {
         y -= speed;
+    }
+
+    @Override
+    public boolean outOfBounds() {
+        return y < -this.height;
     }
 }

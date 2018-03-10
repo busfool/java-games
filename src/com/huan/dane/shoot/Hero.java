@@ -21,10 +21,15 @@ public class Hero extends FlyingObject {
     }
 
     @Override
-    void step() {
+    public void step() {
         if (images.length > 0) {
             image = images[index++ / 10 % images.length];
         }
+    }
+
+    @Override
+    public boolean outOfBounds() {
+        return false;
     }
 
     public Bullet[] shoot() {
@@ -46,5 +51,36 @@ public class Hero extends FlyingObject {
     public void moveTo(int x, int y) {
         this.x = x - width / 2;
         this.y = y - height / 2;
+    }
+
+    public void addDoubleFire() {
+        doubleFire += 40;
+    }
+
+    public void setDoubleFire(int doubleFire) {
+        this.doubleFire = doubleFire;
+    }
+
+    public void addLife() {
+        life++;
+    }
+
+    public void subtractLife() {
+        life--;
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public boolean hit(FlyingObject object) {
+        int x1 = object.x - this.width / 2;
+        int x2 = object.x + object.width + this.width / 2;
+        int y1 = object.y - this.height / 2;
+        int y2 = object.y + object.height + this.height / 2;
+        return this.x + this.width / 2 > x1
+                && this.x + this.width / 2 < x2
+                && this.y + this.height / 2 > y1
+                && this.y + this.height / 2 < y2;
     }
 }

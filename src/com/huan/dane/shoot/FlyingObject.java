@@ -50,5 +50,14 @@ public abstract class FlyingObject {
         this.image = image;
     }
 
-    abstract void step();
+    public abstract void step();
+
+    public boolean shootBy(Bullet bullet) {
+        int x = bullet.x;
+        int y = bullet.y;
+        boolean shoot = this.x < x && x < this.x + width && this.y < y && y < this.y + height;
+        return shoot;
+    }
+
+    public abstract boolean outOfBounds();
 }
