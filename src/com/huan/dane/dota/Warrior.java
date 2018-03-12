@@ -1,4 +1,5 @@
 package com.huan.dane.dota;
 
-public class Warrior {
+public abstract class Warrior extends MovingObject {
+
 }

@@ -2,8 +2,9 @@ package com.huan.dane.dota;
 
 public class Hero extends MovingObject {
 
-    int xSpeed = 1;
-    int ySpeed = 1;
+    private float bSpeed = 1;
+    float xSpeed = 1;
+    float ySpeed = 1;
 
     int tempX;
     int tempY;
@@ -32,32 +33,30 @@ public class Hero extends MovingObject {
         this.y = y;
     }
 
-
     @Override
     public void move() {
-        // test move
-        x += xSpeed;
     }
 
     @Override
     public void move(int x, int y) {
-        if (this.x <= x) {
-            xSpeed = 1;
+        int x1 = x - width / 2;
+        int y1 = y - height / 2;
+        if (this.x <= x1) {
+            xSpeed = bSpeed;
         } else {
-            xSpeed = -1;
+            xSpeed = -bSpeed;
         }
 
-        if (this.y <= y) {
-            ySpeed = 1;
+        if (this.y <= y1) {
+            ySpeed = bSpeed;
         } else {
-            ySpeed = -1;
+            ySpeed = -bSpeed;
         }
         // 一瞬间移动过去了，用while这里不是自己定义的时间
-        if (this.x != x) {
+        if (this.x != x1) {
             this.x += xSpeed;
-            System.out.println("speed" + xSpeed + "x" + this.x + "tempX" + x);
         }
-        if (this.y != y) {
+        if (this.y != y1) {
             this.y += ySpeed;
         }
     }
