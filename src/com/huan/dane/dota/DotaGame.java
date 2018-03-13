@@ -102,7 +102,8 @@ public class DotaGame extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
-                mHero.setTarget(x, y);
+                // move Hero
+                mHero.moveTo(x, y);
                 // 有时未调用
                 System.out.println("x = " + x + " y = " + y);
             }
@@ -116,9 +117,9 @@ public class DotaGame extends JPanel {
     private void moveAction() {
         moveIndex++;
         if (moveIndex % 2 == 0) {
-            mHero.move(mHero.getTempX(), mHero.getTempY());
+            mHero.move();
             for (int i = 0; i < warriors.length; i++) {
-                warriors[i].moveTo();
+                warriors[i].move();
             }
         }
     }

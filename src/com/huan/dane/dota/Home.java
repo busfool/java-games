@@ -6,11 +6,10 @@ public class Home extends Building {
 
     private Home() {
         this.image = DotaGame.home;
-        // 压缩图片
         this.width = 50;
         this.height = 50;
         this.x = 10;
-        this.y = DotaGame.mHeight - height - 10;
+        this.y = 405;
     }
 
     public static Home newInstance() {
