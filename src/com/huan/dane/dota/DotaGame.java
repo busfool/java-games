@@ -91,7 +91,7 @@ public class DotaGame extends JPanel {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                createWarriorAction();
+                createWarriorsAction();
                 moveAction();
                 repaint();
             }
@@ -118,14 +118,14 @@ public class DotaGame extends JPanel {
         if (moveIndex % 2 == 0) {
             mHero.move(mHero.getTempX(), mHero.getTempY());
             for (int i = 0; i < warriors.length; i++) {
-                warriors[i].move();
+                warriors[i].moveTo();
             }
         }
     }
 
     int createWarriorIndex;
 
-    private void createWarriorAction() {
+    private void createWarriorsAction() {
         createWarriorIndex++;
         if (createWarriorIndex % 100 == 0) {
             // create warriors and add

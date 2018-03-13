@@ -13,13 +13,13 @@ public class LongWarrior extends Warrior {
     }
 
     @Override
-    public void move() {
+    public void moveTo() {
         x += xSpeed;
         y -= ySpeed;
     }
 
     @Override
-    public void move(int x, int y) {
+    public void moveTo(int x, int y) {
 
     }
 }

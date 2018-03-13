@@ -1,6 +1,6 @@
 package com.huan.dane.dota;
 
-public class Hero extends MovingObject {
+public class Hero extends BaseObject implements Move {
 
     private float bSpeed = 1;
     float xSpeed = 0;
@@ -38,7 +38,7 @@ public class Hero extends MovingObject {
     }
 
     @Override
-    public void move(int x, int y) {
+    public void moveTo(int x, int y) {
         // 不用while
         if (Math.abs(this.x - x) > 1) {
             this.x = this.x + xSpeed;

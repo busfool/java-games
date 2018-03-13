@@ -3,7 +3,7 @@ package com.huan.dane.dota;
 public class ShortWarrior extends Warrior {
 
     float xSpeed = 1;
-    float ySpeed = 1;
+    int ySpeed = 1;
 
     public ShortWarrior(float x, float y) {
         this.image = DotaGame.shortWarrior;
@@ -20,7 +20,8 @@ public class ShortWarrior extends Warrior {
     }
 
     @Override
-    public void move(int x, int y) {
+    public void moveTo(int x, int y) {
 
     }
+
 }
