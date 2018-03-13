@@ -71,7 +71,6 @@ public class DotaGame extends JPanel {
     }
 
     private void paintBuildings(Graphics g) {
-        System.out.println(mHome.getY());
         g.drawImage(DotaGame.home, (int) mHome.getX(), (int) mHome.getY(), mHome.getWidth(), mHome.getHeight(), null);
         g.drawImage(DotaGame.camp, (int) mCamp.getX(), (int) mCamp.getY(), mCamp.getWidth(), mCamp.getHeight(), null);
     }
@@ -104,12 +103,18 @@ public class DotaGame extends JPanel {
         MouseAdapter adapter = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
+                // 有时未调用
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
                 int x = e.getX();
                 int y = e.getY();
                 // move Hero
                 mHero.moveTo(x, y);
-                // 有时未调用
-                System.out.println("x = " + x + " y = " + y);
+                System.out.println("mouse Pressed");
             }
         };
         this.addMouseListener(adapter);

@@ -17,7 +17,7 @@ public abstract class Warrior extends MovingObject {
                 int y = random.nextInt(DotaGame.mHeight);
                 Warrior.this.moveTo(x, y);
             }
-        }, 1000, 1000);
+        }, 1000, 3000);
     }
 
 

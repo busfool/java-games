@@ -59,7 +59,5 @@ public abstract class MovingObject extends BaseObject {
         if (this.y > y) {
             ySpeed = -ySpeed;
         }
-
-        System.out.println("xSpeed =" + xSpeed + " ySpeed =" + ySpeed);
     }
 }
