@@ -1,10 +1,10 @@
 package com.huan.dane.dota;
 
 public class LongWarrior extends Warrior {
-    int xSpeed = 1;
-    int ySpeed = 1;
+    float xSpeed = 1;
+    float ySpeed = 1;
 
-    public LongWarrior(int x, int y) {
+    public LongWarrior(float x, float y) {
         this.image = DotaGame.longWarrior;
         this.width = 20;
         this.height = 20;

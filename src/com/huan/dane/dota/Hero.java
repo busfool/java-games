@@ -3,8 +3,8 @@ package com.huan.dane.dota;
 public class Hero extends MovingObject {
 
     private float bSpeed = 1;
-    float xSpeed = 1;
-    float ySpeed = 1;
+    float xSpeed = 0;
+    float ySpeed = 0;
 
     int tempX;
     int tempY;
@@ -39,25 +39,39 @@ public class Hero extends MovingObject {
 
     @Override
     public void move(int x, int y) {
-        int x1 = x - width / 2;
-        int y1 = y - height / 2;
-        if (this.x <= x1) {
-            xSpeed = bSpeed;
-        } else {
-            xSpeed = -bSpeed;
+        // 不用while
+        if (Math.abs(this.x - x) > 1) {
+            this.x = this.x + xSpeed;
         }
+        if (Math.abs(this.y - y) > 1) {
+            this.y = this.y + ySpeed;
+        }
+    }
 
-        if (this.y <= y1) {
+    public void setTarget(int x, int y) {
+        this.setTempX(x);
+        this.setTempY(y);
+        //计算速度，保留位数
+        float ratio = (float) Math.abs(this.x - x) / (float) Math.abs(this.y - y);
+        if (ratio > 1) {
+            xSpeed = bSpeed;
+            ySpeed = (float) (Math.round((bSpeed / ratio) * 100)) / 100;
+        } else if (ratio < 1) {
+            xSpeed = (float) (Math.round((bSpeed * ratio) * 100)) / 100;
             ySpeed = bSpeed;
         } else {
-            ySpeed = -bSpeed;
+            xSpeed = bSpeed;
+            ySpeed = bSpeed;
         }
-        // 一瞬间移动过去了，用while这里不是自己定义的时间
-        if (this.x != x1) {
-            this.x += xSpeed;
+
+        if (this.x > x) {
+            xSpeed = -xSpeed;
         }
-        if (this.y != y1) {
-            this.y += ySpeed;
+
+        if (this.y > y) {
+            ySpeed = -ySpeed;
         }
+
+        System.out.println("xSpeed =" + xSpeed + " ySpeed =" + ySpeed);
     }
 }

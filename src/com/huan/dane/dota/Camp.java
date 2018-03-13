@@ -14,8 +14,8 @@ public class Camp extends Building {
     }
 
     private Warrior createWarrior(int type) {
-        int createX = this.x + width;
-        int createY = this.y;
+        float createX = this.x + width;
+        float createY = this.y;
         if (type == WARRIOR_SHORT) {
             return new ShortWarrior(createX, createY);
         } else if (type == WARRIOR_LONG) {

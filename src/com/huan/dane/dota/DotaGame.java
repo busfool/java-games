@@ -34,8 +34,7 @@ public class DotaGame extends JPanel {
     }
 
     public static int mWidth = 500;
-    public static int mHeight = 465;
-
+    public static int mHeight = 500;
     public Home mHome;
     public Hero mHero = new Hero(0, 0);
     public Camp mCamp = new Camp();
@@ -69,18 +68,18 @@ public class DotaGame extends JPanel {
     }
 
     private void paintBuildings(Graphics g) {
-        g.drawImage(DotaGame.home, mHome.getX(), mHome.getY(), mHome.getWidth(), mHome.getHeight(), null);
-        g.drawImage(DotaGame.camp, mCamp.getX(), mCamp.getY(), mCamp.getWidth(), mCamp.getHeight(), null);
+        g.drawImage(DotaGame.home, (int) mHome.getX(), (int) mHome.getY(), mHome.getWidth(), mHome.getHeight(), null);
+        g.drawImage(DotaGame.camp, (int) mCamp.getX(), (int) mCamp.getY(), mCamp.getWidth(), mCamp.getHeight(), null);
     }
 
     private void paintHero(Graphics g) {
-        g.drawImage(DotaGame.hero, mHero.getX(), mHero.getY(), mHero.getWidth(), mHero.getHeight(), null);
+        g.drawImage(DotaGame.hero, (int) mHero.getX(), (int) mHero.getY(), mHero.getWidth(), mHero.getHeight(), null);
     }
 
     private void paintWarriors(Graphics g) {
         for (int i = 0; i < warriors.length; i++) {
             Warrior w = warriors[i];
-            g.drawImage(w.getImage(), w.getX(), w.getY(), w.getWidth(), w.getHeight(), null);
+            g.drawImage(w.getImage(), (int) w.getX(), (int) w.getY(), w.getWidth(), w.getHeight(), null);
         }
     }
 
@@ -101,20 +100,15 @@ public class DotaGame extends JPanel {
         MouseAdapter adapter = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (e.getButton() == MouseEvent.BUTTON3) {
-                    int x = e.getX();
-                    int y = e.getY();
-                    mHero.setTempX(x);
-                    mHero.setTempY(y);
-                    // 有时未调用
-                    System.out.println("x = " + x + " y = " + y);
-                }
-
+                int x = e.getX();
+                int y = e.getY();
+                mHero.setTarget(x, y);
+                // 有时未调用
+                System.out.println("x = " + x + " y = " + y);
             }
         };
-
         this.addMouseListener(adapter);
+        this.addMouseMotionListener(adapter);
     }
 
     int moveIndex;
