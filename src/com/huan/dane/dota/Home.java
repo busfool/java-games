@@ -8,8 +8,8 @@ public class Home extends Building {
         this.image = DotaGame.home;
         this.width = 50;
         this.height = 50;
-        this.x = 10;
-        this.y = 405;
+        this.x = 70;
+        this.y = 670;
     }
 
     public static Home newInstance() {

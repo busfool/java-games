@@ -9,8 +9,8 @@ public class Camp extends Building {
         this.image = DotaGame.camp;
         this.width = 50;
         this.height = 50;
-        this.x = 70;
-        this.y = 345;
+        this.x = 140;
+        this.y = 610;
     }
 
     private Warrior createWarrior(int type) {

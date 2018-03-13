@@ -1,11 +1,7 @@
 package com.huan.dane.dota;
 
 public interface Skill {
-    void abandon();
+    void skillOne();
 
-    void banana();
-
-    void carry();
-
-    void drag();
+    void jump(int x, int y);
 }

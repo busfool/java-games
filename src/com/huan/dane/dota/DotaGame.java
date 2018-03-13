@@ -33,15 +33,16 @@ public class DotaGame extends JPanel {
         }
     }
 
-    public static int mWidth = 500;
-    public static int mHeight = 500;
-    public Home mHome;
+    public static int mWidth = 800;
+    public static int mHeight = 800;
+
+    public Home mHome = Home.newInstance();
     public Hero mHero = new Hero(0, 0);
     public Camp mCamp = new Camp();
     public Warrior[] warriors = new Warrior[]{};
 
     public DotaGame() {
-        mHome = Home.newInstance();
+
     }
 
     public static void main(String[] args) {
@@ -49,8 +50,10 @@ public class DotaGame extends JPanel {
         DotaGame game = new DotaGame();
         frame.add(game);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(mWidth, mHeight + 30);
         frame.setVisible(true);
+
+        Insets insets = frame.getInsets();
+        frame.setSize(mWidth, mHeight + insets.top);
         game.action();
     }
 
@@ -68,6 +71,7 @@ public class DotaGame extends JPanel {
     }
 
     private void paintBuildings(Graphics g) {
+        System.out.println(mHome.getY());
         g.drawImage(DotaGame.home, (int) mHome.getX(), (int) mHome.getY(), mHome.getWidth(), mHome.getHeight(), null);
         g.drawImage(DotaGame.camp, (int) mCamp.getX(), (int) mCamp.getY(), mCamp.getWidth(), mCamp.getHeight(), null);
     }
