@@ -35,8 +35,47 @@ public class Hero extends MovingObject implements Skill {
     }
 
     public void paint(Graphics g) {
-        g.setColor(Color.WHITE);
-        g.fillOval((int) x + 10, (int) y + 10, width, height);
+        if (isPerformOne()) {
+            g.setColor(Color.WHITE);
+            g.drawArc((int) (x - maxRange / 2), (int) (y - maxRange / 2), maxRange, maxRange, 0, 360);
+        }
+    }
+
+    public void handle(DotaGame game) {
+        if (isPerformOne()) {
+            Warrior[] warriors = game.warriors;
+            for (int i = 0; i < warriors.length; i++) {
+                Warrior w = warriors[i];
+                if (inRange(w.getX(), w.getY())) {
+                    w.cancelTimer();
+                    w.moveTo((int) this.x, (int) this.y);
+                } else {
+                }
+            }
+        }
+    }
+
+    private int range;
+    private int minRange = 20;
+    private int maxRange = 100;
+
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
+    private boolean inRange(float x, float y) {
+        float a = this.x - x;
+        float b = this.y - y;
+        double len = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+        if (len < maxRange / 2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -46,6 +85,7 @@ public class Hero extends MovingObject implements Skill {
     public void skillOne(JPanel panel) {
         stopMoving();
         setPerformOne(true);
+        // set skill data
     }
 
     /**

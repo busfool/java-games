@@ -76,9 +76,7 @@ public class DotaGame extends JPanel {
 
     private void paintHero(Graphics g) {
         g.drawImage(DotaGame.hero, (int) mHero.getX(), (int) mHero.getY(), mHero.getWidth(), mHero.getHeight(), null);
-        if (mHero.isPerformOne()) {
-            mHero.paint(g);
-        }
+        mHero.paint(g);
     }
 
     private void paintWarriors(Graphics g) {
@@ -97,6 +95,7 @@ public class DotaGame extends JPanel {
             @Override
             public void run() {
                 createWarriorsAction();
+                handleAction();
                 moveAction();
                 repaint();
             }
@@ -166,11 +165,15 @@ public class DotaGame extends JPanel {
 
     private void createWarriorsAction() {
         createWarriorIndex++;
-        if (createWarriorIndex % 100 == 0) {
+        if (createWarriorIndex % 100 == 0 && warriors.length < 4) {
             // create warriors and add
             Warrior[] newWarriors = mCamp.createWarriors();
             warriors = Arrays.copyOf(warriors, warriors.length + newWarriors.length);//扩容
             System.arraycopy(newWarriors, 0, warriors, warriors.length - newWarriors.length, newWarriors.length);
         }
+    }
+
+    private void handleAction() {
+        mHero.handle(DotaGame.this);
     }
 }

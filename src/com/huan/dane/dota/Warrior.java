@@ -20,5 +20,8 @@ public abstract class Warrior extends MovingObject {
         }, 1000, 3000);
     }
 
+    public void cancelTimer() {
+        mTimer.cancel();
+    }
 
 }
