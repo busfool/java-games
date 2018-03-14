@@ -60,4 +60,19 @@ public abstract class MovingObject extends BaseObject {
             ySpeed = -ySpeed;
         }
     }
+
+    public boolean isMoving() {
+        if (Math.abs(this.x - this.getTargetX()) <= 1 && Math.abs(this.y - this.getTargetY()) <= 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void stopMoving() {
+        if (isMoving()) {
+            this.setTargetX((int) this.x);
+            this.setTargetY((int) this.y);
+        }
+    }
 }

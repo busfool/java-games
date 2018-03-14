@@ -3,8 +3,7 @@ package com.huan.dane.dota;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Arrays;
@@ -77,6 +76,9 @@ public class DotaGame extends JPanel {
 
     private void paintHero(Graphics g) {
         g.drawImage(DotaGame.hero, (int) mHero.getX(), (int) mHero.getY(), mHero.getWidth(), mHero.getHeight(), null);
+        if (mHero.isPerformOne()) {
+            mHero.paint(g);
+        }
     }
 
     private void paintWarriors(Graphics g) {
@@ -86,7 +88,7 @@ public class DotaGame extends JPanel {
         }
     }
 
-    private static int interval = 10;
+    private static int interval = 1000 / 100;
 
     private void action() {
         // 用Timer刷新界面
@@ -103,8 +105,6 @@ public class DotaGame extends JPanel {
         MouseAdapter adapter = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
-                // 有时未调用
             }
 
             @Override
@@ -114,11 +114,40 @@ public class DotaGame extends JPanel {
                 int y = e.getY();
                 // move Hero
                 mHero.moveTo(x, y);
-                System.out.println("mouse Pressed");
             }
         };
         this.addMouseListener(adapter);
         this.addMouseMotionListener(adapter);
+
+        KeyAdapter keyAdapter = new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                char keyChar = e.getKeyChar();
+                switch (keyChar) {
+                    case 'e':
+                        mHero.skillOne(DotaGame.this);
+                        break;
+                    case 'f':
+                        break;
+                    default:
+                        break;
+                }
+                // repaint();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+            }
+        };
+        this.requestFocus();
+        this.addKeyListener(keyAdapter);
     }
 
     int moveIndex;

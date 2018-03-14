@@ -1,7 +1,9 @@
 package com.huan.dane.dota;
 
-public interface Skill {
-    void skillOne();
+import javax.swing.*;
 
-    void jump(int x, int y);
+public interface Skill {
+    void skillOne(JPanel panel);
+
+    void skillTwo();
 }
