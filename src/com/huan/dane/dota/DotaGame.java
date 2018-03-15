@@ -165,7 +165,7 @@ public class DotaGame extends JPanel {
 
     private void createWarriorsAction() {
         createWarriorIndex++;
-        if (createWarriorIndex % 100 == 0 && warriors.length < 4) {
+        if (createWarriorIndex % 100 == 0 && warriors.length < 20) {
             // create warriors and add
             Warrior[] newWarriors = mCamp.createWarriors();
             warriors = Arrays.copyOf(warriors, warriors.length + newWarriors.length);//扩容

@@ -26,12 +26,15 @@ public class Hero extends MovingObject implements Skill {
         this.performTwo = performTwo;
     }
 
+    private Timer mTimer;
+
     public Hero(int x, int y) {
         this.image = DotaGame.hero;
         this.width = 30;
         this.height = 30;
         this.x = x;
         this.y = y;
+        mTimer = new Timer();
     }
 
     public void paint(Graphics g) {
@@ -84,8 +87,14 @@ public class Hero extends MovingObject implements Skill {
     @Override
     public void skillOne(JPanel panel) {
         stopMoving();
+        // 技能持续时间
         setPerformOne(true);
-        // set skill data
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                setPerformOne(false);
+            }
+        }, 2000);
     }
 
     /**
